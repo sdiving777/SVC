@@ -25,7 +25,8 @@ for sLine in fF:
     
 fF.close()
 
-clf = svm.SVC(kernel='poly',degree=5)
+#clf = svm.SVC(kernel='poly',degree=5)
+clf = svm.SVC()
 clf.fit(Y_arr_train,X_arr_train)
 
 # check on learning sample
