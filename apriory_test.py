@@ -20,7 +20,7 @@ for sLine in fF:
 fF.close()
 
 
-freqItemSet, rules = apriori(Y_arr_train, minSup=0.4, minConf=0.2) 
+freqItemSet, rules = apriori(Y_arr_train, minSup=<>, minConf=<>) 
 for i in rules:
 	print(i)
 
