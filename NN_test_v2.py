@@ -79,7 +79,7 @@ while (bGood!=True):
     model.fit(Y_arr_train, X_arr_train, epochs=10, batch_size=len(X_arr_train), verbose=0)
 
     # Prediction
-    arr_predict = model.predict(Y_arr_train)
+    arr_predict = model.predict(Y_arr_check)
 
     if (len(arr_predict)!=len(X_arr_check)):
         print("len(arr_predict)!=len(X_arr_check)")
@@ -87,8 +87,6 @@ while (bGood!=True):
 
     iOK_train = 0
     iFl_train = 0
-    iOK_check = 0
-    iFl_check = 0
     for i in range(len(arr_predict)):
         iR = -1
         if (arr_predict[i][0]<0.5):
@@ -101,19 +99,17 @@ while (bGood!=True):
         else:
             iFl_train += 1
 
-        if (iR==X_arr_check[i]):
-            iOK_check += 1
-        else:
-            iFl_check += 1
-
         if (iR<0):
             print("iR<0")
             sys.exit(0)
 
+    if (iFl_train==0):
+        bGood=True
+        
     print()
-    print("train: "+str(iFl_train)+"/"+str(iOK_train))
-    print("check: "+str(iFl_check)+"/"+str(iOK_check)+"   "+str(iFl_check/iOK_check))
+    print("check: "+str(iFl_train)+"/"+str(iOK_train))
     print()
+    
     
 
 #model.save('model_prod_v2.h5')
